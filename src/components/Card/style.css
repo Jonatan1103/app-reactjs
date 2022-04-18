@@ -1,0 +1,17 @@
+.card {
+  display:flex;
+  height:100px;
+  width:50%;
+  align-items:center;
+  justify-content: space-around;
+
+  background-color:rgb(64, 67, 255);
+  color:#fff;
+
+  border-radius:5px;
+  margin-bottom:20px;
+}
+
+.card strong {
+  font-size:18px;
+}
