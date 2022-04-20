@@ -23,14 +23,14 @@ export function Home() {
 
   useEffect(() => {
     // Dentro do objeto devemos colocar todas. ações que serão executadas.
-    fetch('https://api.github.com/users/Jonatan1103')   
-      .then(response => response.json())
-      .then(data => {
+    fetch("https://api.github.com/users/jonatan1103")
+      .then((response) => response.json())
+      .then((data) => {
         setUser({
           name: data.name,
           avatar: data.avatar_url,
-        })
-      })
+        });
+      });
   }, []) // Os arrays definem quais os estados que o useEffect depende.
 
   return (
@@ -43,11 +43,11 @@ export function Home() {
         </div>
       </header>
 
-      <input
-        type="text"
-        placeholder="Digite o nome"
-        onChange={event => setStudentName(event.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Digite o nome"
+          onChange={event => setStudentName(event.target.value)}
+        />
 
       <button 
         type="button" 
