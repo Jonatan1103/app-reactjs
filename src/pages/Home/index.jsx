@@ -2,12 +2,12 @@ import './style.css'
 import fotoPerfil from '../../images/jonatan.png'
 
 import { Card } from '../../components/Card';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Home() {
   const [studentName, setStudentName] = useState()
-
   const [students, setStudents] = useState([])
+  const [user, setUser] = useState({name:'', avatar: ''})
 
   function handleAddStudent() {
     const newStudent = {
@@ -21,14 +21,25 @@ export function Home() {
     setStudents(prevState => [...prevState, newStudent])
   }
 
-  return (
+  useEffect(() => {
+    // Dentro do objeto devemos colocar todas. ações que serão executadas.
+    fetch('https://api.github.com/users/Jonatan1103')   
+      .then(response => response.json())
+      .then(data => {
+        setUser({
+          name: data.name,
+          avatar: data.avatar_url,
+        })
+      })
+  }, []) // Os arrays definem quais os estados que o useEffect depende.
 
+  return (
     <div className='container'>
       <header>
         <h1>Lista de presença</h1>
         <div>
-          <strong>Jonatan</strong>
-          <img src={fotoPerfil} alt="foto de perfil." />
+          <strong>{user.name}</strong>
+          <img src={user.avatar} alt="foto de perfil." />
         </div>
       </header>
 
