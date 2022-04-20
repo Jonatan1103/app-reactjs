@@ -1,10 +1,12 @@
 import './style.css'
+import fotoPerfil from '../../images/jonatan.png'
 
 import { Card } from '../../components/Card';
 import { useState } from 'react';
 
 export function Home() {
-  const [studentName, setStudentName] = useState('Amanda')
+  const [studentName, setStudentName] = useState()
+
   const [students, setStudents] = useState([])
 
   function handleAddStudent() {
@@ -22,12 +24,20 @@ export function Home() {
   return (
 
     <div className='container'>
-      <h1>Lista de presença</h1>
+      <header>
+        <h1>Lista de presença</h1>
+        <div>
+          <strong>Jonatan</strong>
+          <img src={fotoPerfil} alt="foto de perfil." />
+        </div>
+      </header>
+
       <input
         type="text"
         placeholder="Digite o nome"
         onChange={event => setStudentName(event.target.value)}
       />
+
       <button 
         type="button" 
         onClick={ handleAddStudent }>
@@ -35,7 +45,13 @@ export function Home() {
       </button>
 
       {
-        students.map(student => <Card name={student.name} time={student.time}/>)
+        students.map(({ name, time }, index) => 
+          <Card 
+            key={index}
+            name={name} 
+            time={time}
+          />
+        )
       }
     </div>
 
