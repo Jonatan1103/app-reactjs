@@ -1,8 +1,7 @@
 import './style.css'
-import fotoPerfil from '../../images/jonatan.png'
 
 import { Card } from '../../components/Card';
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 
 export function Home() {
   const [studentName, setStudentName] = useState()
@@ -19,6 +18,10 @@ export function Home() {
       })
     }
     setStudents(prevState => [...prevState, newStudent])
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
   }
 
   useEffect(() => {
@@ -43,15 +46,17 @@ export function Home() {
         </div>
       </header>
 
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Digite o nome"
           onChange={event => setStudentName(event.target.value)}
         />
+      </form>
 
       <button 
         type="button" 
-        onClick={ handleAddStudent }>
+        onClick={handleAddStudent}>
           Adicionar
       </button>
 
